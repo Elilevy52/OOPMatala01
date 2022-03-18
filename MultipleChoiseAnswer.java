@@ -24,7 +24,7 @@ public class MultipleChoiseAnswer {
 	public boolean isTrueAnswer() {
 		return trueAnswer;
 	}
-
+	
 	public void setTrueAnswer(boolean trueAnswer) {
 		this.trueAnswer = trueAnswer;
 	}

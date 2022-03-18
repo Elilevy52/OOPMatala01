@@ -7,13 +7,24 @@ public class MangerClass {
 	private MultipleChoiseAnswer[] allMultipleChoiseAnswer;
 	private MultipleChoiceQuestions[] allMultipleChoiceQuestions;
 	private OpenQuestion[] allOpenQuestions;
-	private int size = 2;
+	private int size;
 
 	public MangerClass() {
+		this.size = 5;
 		this.allQustions = new Question[size]; 
 		this.allMultipleChoiseAnswer = new MultipleChoiseAnswer[size];
 		this.allOpenQuestions = new OpenQuestion[size];
 		this.allMultipleChoiceQuestions = new MultipleChoiceQuestions[size];
+	}
+	public void getAllMultipleChoiceQuestions() {
+		if(allMultipleChoiceQuestions[0] == null) {
+			System.out.println("No Multiple Choice Questions to show\nPlease add Question fist.");
+		}
+		else {
+			for(int i = 0; i < size; i++) {
+				System.out.println(allMultipleChoiceQuestions[i].getMCQuestion() + allMultipleChoiseAnswer[i].isTrueAnswer());
+			}
+		}
 	}
 	public void getAllOpenQuestions() {
 	if(allOpenQuestions[0] == null) {
@@ -74,19 +85,25 @@ public class MangerClass {
 	}
 
 	public void addOpenQuestion(String question, String answer) {
-		if (size == allQustions.length) {
-			extendsAllQustionsArray();
-		}
 		OpenQuestion openQuestion = new OpenQuestion(question, answer);
+		if (size == allQustions.length ||size ==  allOpenQuestions.length) {
+			extendsAllQustionsArray();
+			extendsOpenQuestionArray();
+			System.out.println("Array extened Successfully");
+		}
 		allQustions[size++] = openQuestion;
 		allOpenQuestions[size++] = openQuestion;
-	}
+		System.out.println("Open Question added Successfully");
 
+	}
+	
 	public void addMultipleChoiseQuestion(String question, String answer, boolean isTrueAnswer) {
 		MultipleChoiceQuestions MCQuestion = new MultipleChoiceQuestions(question, answer);
 		MultipleChoiseAnswer MCAnswer = new MultipleChoiseAnswer(answer, isTrueAnswer);
 		if (size == allQustions.length) {
 			extendsAllQustionsArray();
+			extendsAllMultipleChoiceQuestionsArray();
+			System.out.println("Array extened Successfully");
 		}
 		allQustions[size++] = MCQuestion;
 		allMultipleChoiceQuestions[size++] = MCQuestion;
@@ -96,10 +113,11 @@ public class MangerClass {
 			extendsAnswerArray();
 			allMultipleChoiseAnswer[size++] = MCAnswer;
 		}
+		
 	}
 
 	private void extendsAnswerArray() {
-		MultipleChoiseAnswer[] newAnswerArray = new MultipleChoiseAnswer[size * 2];
+		MultipleChoiseAnswer[] newAnswerArray = new MultipleChoiseAnswer[allMultipleChoiseAnswer.length * 2];
 		for (int i = 0; i < allMultipleChoiseAnswer.length; i++) {
 			newAnswerArray[i] = allMultipleChoiseAnswer[i];
 		}
@@ -108,28 +126,28 @@ public class MangerClass {
 	}
 
 	private void extendsAllQustionsArray() {
-		Question[] newArray = new Question[size * 2];
+		Question[] newArray = new Question[allQustions.length * 2];
 		for (int i = 0; i < allQustions.length; i++) {
 			newArray[i] = allQustions[i];
 		}
 		allQustions = newArray;
-		System.out.println("Array extened Successfully");
+		
 	}
 	public void extendsAllMultipleChoiceQuestionsArray() {
-		MultipleChoiceQuestions[] MultipleChoiceQuestionsArray = new MultipleChoiceQuestions[size * 2];
+		MultipleChoiceQuestions[] MultipleChoiceQuestionsArray = new MultipleChoiceQuestions[allMultipleChoiceQuestions.length * 2];
 		for(int i = 0; i < allMultipleChoiceQuestions.length; i++) {
 			MultipleChoiceQuestionsArray[i] = allMultipleChoiceQuestions[i]; 
 		}
 		allMultipleChoiceQuestions = MultipleChoiceQuestionsArray;
-		System.out.println("Array extened Successfully");
+		
 	}
 	public void extendsOpenQuestionArray() {
-		OpenQuestion[] OpenQuestionsArray = new OpenQuestion[size * 2];
+		OpenQuestion[] OpenQuestionsArray = new OpenQuestion[allOpenQuestions.length * 2];
 		for(int i = 0; i < allOpenQuestions.length; i++) {
 			OpenQuestionsArray[i] = allOpenQuestions[i];
 		}
 		allOpenQuestions = OpenQuestionsArray;
-		System.out.println("Array extened Successfully");
+		
 	}
 	@Override
 	public String toString() {

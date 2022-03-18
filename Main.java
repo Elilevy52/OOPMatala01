@@ -33,11 +33,11 @@ public class Main {
 				while(caseOneOp >= 1 && caseOneOp <= 4) {
 					if(caseOneOp == 1) { 
 						System.out.println("Printing all Open Questions and thier answers.");
-						
+						manger.getAllOpenQuestions();
 					}
 					if(caseOneOp == 2) {
 						System.out.println("Printing all Multiple Choice Questions and their answers.");
-					//need to add method body.
+					manger.getAllMultipleChoiceQuestions();
 					}
 					if(caseOneOp == 3) {
 						System.out.println("Printing all Questions.");
