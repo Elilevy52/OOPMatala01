@@ -328,7 +328,15 @@ public class Main {
 				break;
 				
 			case 7:
-				manage.printAllQuestionAndAnswers();
+
+				System.out.println("How many questions would you like in your exam? ");
+				System.out.println("There are only: " + manage.checkAllQuestionLength() + " Questions available.");
+				int questAmount =  input.nextInt();
+				if (questAmount < 0 || questAmount > manage.checkAllQuestionLength()) {
+					System.out.println("Invalid amount of question, please select again: ");
+					questAmount = input.nextInt();;
+				}
+				manage.autoCreateExam(questAmount);
 				break;
 					
 			default:
